@@ -1,0 +1,160 @@
+﻿The program takes in 3 arguments:
+        index <inverted-index file name> <directory or file name>
+Any different number of arguments will print out a message and exit.
+The code checks if the given arguments 
+<inverted-index file name> already exists and if <directory or file name> is not a regular directory or file.
+Does not do the following.
+* index a file that doesn�t exist or isn�t a regular file
+* write to a file that already exists
+* crash when the file to be written in and the file to be indexed are the same
+
+As I tested the code, I tried it on a variety of different file formats to make sure only valid tokens (and no garbage) gets added to the index:
+Example
+Directory: funfiles/
+                      Dump.txt
+                      Dump2.txt
+                      funfiles2/
+                                 surprise.txt
+
+Dump.txt contains the following text:
+�Hello#$%my@name is $Thalia ^and* (I-+ love tAking$Naps.�
+
+Dump2.txt contains the following text:
+�Halloweeny@Halloweeny@Halloweeny@Halloweeny@Halloweeny�
+
+
+surpise.txt contains the following text:
+�Clowns, it's fair to say, are not currently having the best time of it, PR-wise. 
+The fourth season of American Horror Story, which debuted Wednesday, features Twisty 
+the Clown as the primary antagonist: a terrifying perversion of the profession 
+with a mask of grinning, oversized teeth and distorted black lips. In the 
+opening episode,Twisty�
+
+command line:
+./index monkey funfiles
+
+Output: 
+monkey was successfully written to.
+
+monkey.txt   :
+<list> a
+ funfiles/funfiles2/surprise.txt 2 funfiles/DUMP2.txt 2 funfiles/DUMP.txt 2
+</list>
+<list> american
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> and
+ funfiles/DUMP.txt 2 funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1
+</list>
+<list> antagonist
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> are
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> as
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> best
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> black
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> clown
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> clowns
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> currently
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> debuted
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> distorted
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+..
+�..
+�..
+<list> hello
+ funfiles/DUMP.txt 1
+</list>
+<list> horror
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> i
+ funfiles/DUMP.txt 1
+</list>
+<list> in
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> is
+ funfiles/DUMP.txt 1
+</list>
+<list> it
+ funfiles/funfiles2/surprise.txt 2
+</list>
+<list> lips
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> love
+ funfiles/DUMP.txt 1
+</list>
+<list> mask
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> my
+ funfiles/DUMP.txt 1
+</list>
+<list> name
+ funfiles/DUMP.txt 1
+</list>
+<list> naps
+ funfiles/DUMP.txt 1
+</list>
+<list> not
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> of
+ funfiles/funfiles2/surprise.txt 4 funfiles/DUMP2.txt 2 funfiles/DUMP.txt 2
+</list>
+<list> opening
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> oversized
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> perversion
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> pr
+ funfiles/funfiles2/surprise.txt 1
+</list>
+<list> primary
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> profession
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+�..
+�..
+��
+funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> terrifying
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
+<list> thalia
+ funfiles/DUMP.txt 1
+</list>
+<list> the
+ funfiles/funfiles2/surprise.txt 6 funfiles/DUMP2.txt 3 funfiles/DUMP.txt 3
+�..
+�..
+�..
+��
+</list>
+<list> with
+ funfiles/funfiles2/surprise.txt 1 funfiles/DUMP2.txt 1 funfiles/DUMP.txt 1
+</list>
